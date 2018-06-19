@@ -10,17 +10,13 @@
  </head>
  <body>
 	<div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
-	  <strong>上衣原型公式计算器</strong>
+	  <strong>上衣原型 计算器</strong>
+	  <small class="text-muted">160/68A</small>
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    <span aria-hidden="true">&times;</span>
 	  </button>
 	</div>
-
-
 	<div class="container">
-		<div class="mx-auto" style="width: 100px; padding-bottom: 8px;">
-			<button type="submit" class="btn btn-info btn-sm">公式计算</button>
-		</div>
 		<form novalidate>
 			<div class="form-row">
 				<div class="col">
@@ -124,6 +120,11 @@
 									<input id="SL" name="SL" type="number" class="form-control-sm">
 								</td>
 								<td>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="5" class="text-center">
+									<button type="button" id="Math" class="btn btn-info btn-sm">公式计算</button>
 								</td>
 							</tr>
 						</tbody>
@@ -347,25 +348,42 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		//var nana={
-			//N=38,
-			//B=93,
-			//W=82,
-			//H=96,
-		//};
+		var nana={
+			N:34,
+			NLS:4,
+			B:93,
+			BLS:6,
+			W:82,
+			WLS:4,
+			S:39
+		};
 		$(function () {
 			$("input[type='number']").width(50);
-			$("button").click(function () {
-				MathLingKu();
-				MathLingShen();
-				MathSP();
-				MathXiuLongShen();
-				MathCeYaoSheng();
-				MathYaoSheng();
-				MathQinaKuan();
+			if(getUrlParam("nana")=="nana"){
+				$("#N").val(nana.N);
+				$("#B").val(nana.B);
+				$("#W").val(nana.W);
+				$("#S").val(nana.S);
+			}
+			$("#Math").click(function () {
+				MathAll()
 			})
 		})
-
+		//获取url中的参数
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]); return null; //返回参数值
+        }
+		function MathAll() {
+			MathLingKu();
+			MathLingShen();
+			MathSP();
+			MathXiuLongShen();
+			MathCeYaoSheng();
+			MathYaoSheng();
+			MathQinaKuan();
+		}
 		//领宽
 		function MathLingKu() {
 			var N=parseFloat($("#N").val());
