@@ -62,10 +62,10 @@
 								<td>腰围</td>
 								<td>W</td>
 								<td>
-									<input id="W" name="W" type="number" class="form-control-sm">
+									<input id="W" name="W" type="number" class="form-control-sm" value="68">
 								</td>
 								<td>
-									<input id="WLS" name="WLS" type="number" class="form-control-sm">
+									<input id="WLS" name="WLS" type="number" class="form-control-sm" value="4">
 								</td>
 							</tr>
 							<tr>
@@ -221,6 +221,112 @@
 								</td>
 								<td><span id="sp_YX"></span></td>
 							</tr>
+							<tr>
+								<th scope="col">6</th>
+								<td>侧腰省</td>
+								<td>
+									<div equation>
+							            <div fraction>
+										    <div top>
+										        净B
+										    </div>
+										    <div bottom>
+										        20
+										    </div>
+										</div>
+										<div subtract>0.7</div>
+							        </div>						        
+								</td>
+								<td><span id="sp_CYS"></span></td>
+							</tr>
+							<tr>
+								<th scope="col">7</th>
+								<td>腰省</td>
+								<td>
+									<div equation>
+							            <div fraction>
+										    <div top>
+										        B-W
+										    </div>
+										    <div bottom>
+										        4
+										    </div>
+										</div>
+							        </div>						        
+								</td>
+								<td><span id="sp_YS"></span></td>
+							</tr>
+							<tr>
+								<th scope="col">8</th>
+								<td>前宽</td>
+								<td>
+									<div equation>
+							            <div fraction>
+										    <div top>
+										        2B
+										    </div>
+										    <div bottom>
+										        10
+										    </div>
+										</div>										
+										<div subtract>2</div>
+							        </div>						        
+								</td>
+								<td><span id="sp_QK"></span></td>
+							</tr>
+							<tr>
+								<th scope="col">9</th>
+								<td>后领宽</td>
+								<td>
+									<div equation>
+							            <div fraction>
+										    <div top>
+										        2N
+										    </div>
+										    <div bottom>
+										        10
+										    </div>
+										</div>										
+										<div subtract>0.3</div>
+							        </div>						        
+								</td>
+								<td><span id="sp_HLK"></span></td>
+							</tr>
+							<tr>
+								<th scope="col">10</th>
+								<td>后领深</td>
+								<td>
+									<div equation>
+							            <div fraction>
+										    <div top>
+										        0.55N
+										    </div>
+										    <div bottom>
+										        10
+										    </div>
+										</div>							
+							        </div>						        
+								</td>
+								<td><span id="sp_HLS"></span></td>
+							</tr>
+							<tr>
+								<th scope="col">11</th>
+								<td>后宽</td>
+								<td>
+									<div equation>
+							            <div fraction>
+										    <div top>
+										        2B
+										    </div>
+										    <div bottom>
+										        10
+										    </div>
+										</div>						
+										<div subtract>1</div>						
+							        </div>						        
+								</td>
+								<td><span id="sp_HK"></span></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -234,28 +340,43 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	<script type="text/javascript">
+		//var nana={
+			//N=38,
+			//B=93,
+			//W=82,
+			//H=96,
+		//};
 		$(function () {
 			$("input[type='number']").width(50);
 			$("button").click(function () {
 				MathLingKu();
 				MathLingShen();
 				MathSP();
-				MathXiuLongShenXian();
+				MathXiuLongShen();
+				MathCeYaoSheng();
+				MathYaoSheng();
+				MathQinaKuan();
 			})
 		})
 		//领宽
 		function MathLingKu() {
 			var N=parseFloat($("#N").val());
 			var NLS=parseFloat($("#NLS").val());
-			var val=(2*(N+NLS))/10-0.5;
+			var val=((2*(N+NLS))/10-0.5).toFixed(2);
 			$("#sp_lingKuan").text(val);
+
+			var valH=((2*(N+NLS))/10-0.3).toFixed(2);
+			$("#sp_HLK").text(valH);
 		}
 		//领深
 		function MathLingShen() {
 			var N=parseFloat($("#N").val());
 			var NLS=parseFloat($("#NLS").val());
-			var val=(2*(N+NLS))/10+0.5;
+			var val=((2*(N+NLS))/10+0.5).toFixed(2);
 			$("#sp_lingShen").text(val);
+
+			var valH=((N+NLS)*0.55/10).toFixed(2);
+			$("#sp_HLS").text(valH);
 		}
 		//SP
 		function MathSP() {
@@ -264,13 +385,41 @@
 			$("#sp_SP").text(val.toFixed(2));
 		}
 		//袖笼深线 && 腰线
-		function MathXiuLongShenXian() {
+		function MathXiuLongShen() {
 			var B=parseFloat($("#B").val());
 			var BLS=parseFloat($("#BLS").val());
 			var val=2*(B+BLS)/10+3;
 			$("#sp_XLSX").text(val.toFixed(2));
 			var valYX=((B+BLS)/4).toFixed(2);
 			$("#sp_YX").text(valYX);
+
+		}
+		//侧腰省
+		function MathCeYaoSheng() {
+			var B=parseFloat($("#B").val());
+			var val=(B/20-0.7).toFixed(2);
+			$("#sp_CYS").text(val);
+		}
+		//腰省
+		function MathYaoSheng() {			
+			var W=parseFloat($("#W").val());			
+			var WLS=parseFloat($("#WLS").val());
+
+			var B=parseFloat($("#B").val());
+			var BLS=parseFloat($("#BLS").val());
+
+			var val=((B+BLS)-(W+WLS))/4;
+			$("#sp_YS").text(val)
+		}
+		//前宽
+		function MathQinaKuan() {			
+			var B=parseFloat($("#B").val());
+			var BLS=parseFloat($("#BLS").val());
+			var val=(2*(B+BLS)/10-2).toFixed(2);
+			$("#sp_QK").text(val);
+
+			var valH=(2*(B+BLS)/10-1).toFixed(2);
+			$("#sp_HK").text(valH);
 
 		}
 	</script>
