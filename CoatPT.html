@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="content/css/math.css"/>
  </head>
  <body>
-	<div class="alert alert-primary alert-dismissible fade show" role="alert">
-	  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+	<div class="alert alert-primary alert-dismissible fade show text-center" role="alert">
+	  <strong>上衣原型公式计算器</strong>
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    <span aria-hidden="true">&times;</span>
 	  </button>
@@ -18,11 +18,11 @@
 
 
 	<div class="container">
-		<div class="mx-auto" style="width: 100px;">
-			<button type="button" class="btn btn-info btn-sm">公式计算</button>
+		<div class="mx-auto" style="width: 100px; padding-bottom: 8px;">
+			<button type="submit" class="btn btn-info btn-sm">公式计算</button>
 		</div>
-		<form>
-			<div class="row">
+		<form novalidate>
+			<div class="form-row">
 				<div class="col">
 					<table class="table table-sm table-hover">
 						<thead>
@@ -41,9 +41,11 @@
 								<td>N</td>
 								<td>
 									<input id="N" name="N" type="number" class="form-control-sm" value="33">
+									<span class="text-danger">*</span>
 								</td>
 								<td>
-									<input id="NLS" name="NLS" type="number" class="form-control-sm" value="4">
+									<input id="NLS" name="NLS" type="number" class="form-control-sm is-invalid" value="4">
+									<span class="text-danger">*</span>
 								</td>
 							</tr>
 							<tr>
@@ -51,10 +53,12 @@
 								<td>胸围</td>
 								<td>B</td>
 								<td>
-									<input id="B" name="B" type="number" class="form-control-sm" value="84">
+									<input id="B" name="B" type="number" class="form-control-sm is-valid" value="84">
+									<span class="text-danger">*</span>
 								</td>
 								<td>
-									<input id="BLS" name="BLS" type="number" class="form-control-sm" value="6">
+									<input id="BLS" name="BLS" type="number" class="form-control-sm is-valid" value="6">
+									<span class="text-danger">*</span>
 								</td>
 							</tr>
 							<tr>
@@ -62,14 +66,27 @@
 								<td>腰围</td>
 								<td>W</td>
 								<td>
-									<input id="W" name="W" type="number" class="form-control-sm" value="68">
+									<input id="W" name="W" type="number" class="form-control-sm is-valid" value="68">
+									<span class="text-danger">*</span>
 								</td>
 								<td>
-									<input id="WLS" name="WLS" type="number" class="form-control-sm" value="4">
+									<input id="WLS" name="WLS" type="number" class="form-control-sm is-valid" value="4">
+									<span class="text-danger">*</span>
+								</td>
+							</tr>							
+							<tr>
+								<th scope="row">4</th>
+								<td>肩宽</td>
+								<td>S</td>
+								<td>
+									<input id="S" name="S" type="number" class="form-control-sm is-valid" value="37">
+									<span class="text-danger">*</span>
+								</td>
+								<td>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">4</th>
+								<th scope="row">5</th>
 								<td>前腰节</td>
 								<td>FWL</td>
 								<td>
@@ -79,7 +96,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">5</th>
+								<th scope="row">6</th>
 								<td>后腰节</td>
 								<td>BL</td>
 								<td>
@@ -89,7 +106,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">6</th>
+								<th scope="row">7</th>
 								<td>乳胸点</td>
 								<td>BP</td>
 								<td>
@@ -97,16 +114,6 @@
 								</td>
 								<td class="table-info">
 									<input id="BP2" name="BP2" type="number" class="form-control-sm">
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">7</th>
-								<td>肩宽</td>
-								<td>S</td>
-								<td>
-									<input id="S" name="S" type="number" class="form-control-sm" value="37">
-								</td>
-								<td>
 								</td>
 							</tr>
 							<tr>
@@ -358,6 +365,7 @@
 				MathQinaKuan();
 			})
 		})
+
 		//领宽
 		function MathLingKu() {
 			var N=parseFloat($("#N").val());
