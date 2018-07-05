@@ -215,6 +215,24 @@
 							</tr>
 							<tr>
 								<th scope="col">5</th>
+								<td>前宽</td>
+								<td>
+									<div equation>
+							            <div fraction>
+										    <div top>
+										        2B
+										    </div>
+										    <div bottom>
+										        10
+										    </div>
+										</div>										
+										<div subtract>2</div>
+							        </div>						        
+								</td>
+								<td><span id="sp_QK"></span></td>
+							</tr>
+							<tr>
+								<th scope="col">6</th>
 								<td>腰围线</td>
 								<td>
 									<div equation>
@@ -231,7 +249,7 @@
 								<td><span id="sp_YX"></span></td>
 							</tr>
 							<tr>
-								<th scope="col">6</th>
+								<th scope="col">7</th>
 								<td>腋下省</td>
 								<td>
 									<div equation>
@@ -249,7 +267,7 @@
 								<td><span id="sp_CYS"></span></td>
 							</tr>
 							<tr>
-								<th scope="col">7</th>
+								<th scope="col">8</th>
 								<td>腰省</td>
 								<td>
 									<div equation>
@@ -264,24 +282,6 @@
 							        </div>						        
 								</td>
 								<td><span id="sp_YS"></span></td>
-							</tr>
-							<tr>
-								<th scope="col">8</th>
-								<td>前宽</td>
-								<td>
-									<div equation>
-							            <div fraction>
-										    <div top>
-										        2B
-										    </div>
-										    <div bottom>
-										        10
-										    </div>
-										</div>										
-										<div subtract>2</div>
-							        </div>						        
-								</td>
-								<td><span id="sp_QK"></span></td>
 							</tr>
 							<tr>
 								<th scope="col">9</th>
@@ -350,8 +350,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		var nana={
-			N:34,
-			NLS:4,
+			N:38,
+			NLS:0,
 			B:93,
 			BLS:6,
 			W:82,
@@ -411,7 +411,7 @@
 			var val=S/2;
 			$("#sp_SP").text(val.toFixed(2));
 		}
-		//袖笼深线 && 腰线
+		//袖笼深线 && 腰围线
 		function MathXiuLongShen() {
 			var B=parseFloat($("#B").val());
 			var BLS=parseFloat($("#BLS").val());
@@ -421,7 +421,7 @@
 			$("#sp_YX").text(valYX);
 
 		}
-		//侧腰省
+		//腋下省
 		function MathCeYaoSheng() {
 			var B=parseFloat($("#B").val());
 			var val=(B/20-0.7).toFixed(2);
@@ -436,7 +436,7 @@
 			var BLS=parseFloat($("#BLS").val());
 
 			var val=((B+BLS)-(W+WLS))/4;
-			$("#sp_YS").text(val)
+			$("#sp_YS").text(val);
 		}
 		//前宽
 		function MathQinaKuan() {			
